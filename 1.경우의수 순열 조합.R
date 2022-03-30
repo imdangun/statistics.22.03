@@ -1,5 +1,4 @@
-## 경우의수
-
+### 경우의수
 ## factorial
 fact = function(n) {
     x = 1
@@ -9,6 +8,7 @@ fact = function(n) {
     return (x)
 }
 fact(5)
+
 
 ## 순열(permutation)
 # nPr = n! / (n-r)!
@@ -28,6 +28,7 @@ perm = function(n, r) {
     return(fact(n) / fact(n-r))
 }
 print(perm(5, 2)) # 20
+
 
 ## 조합(combination): 순열과 달리 순서를 따지지 않는다.
 # nCr = nPr/r! 

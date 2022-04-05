@@ -19,6 +19,7 @@ c(lower, upper) # 1.41  1.51
 ## 위 문제를, bootstrap 으로 푼다.
 sim_n = 10000
 means = c()
+
 for(i in 1:sim_n) {
     # bootstrap에선, 표본크기가 같아야 한다.
     # bootstrap에선, 복원추출이 필수이다.
@@ -34,21 +35,24 @@ c(quantile(means, .025), quantile(means, .975))
 
 
 ## t분포로 구한 신뢰구간
-c(mean( + qt(.025, df=n-1) * sd(y) / sqrt(n), mean(y) + qt(.975, df=n-1) * sd(y) / sqrt(n))
+c(mean(y) + qt(.025, df=n-1) * sd(y) / sqrt(n), mean(y) + qt(.975, df=n-1) * sd(y) / sqrt(n))
 # 1.412645 1.511355
 
 
-### 모표준편차 추정
+
+### bootstrap으로 모표준편차를 추정한다.
 sim_n = 10000
 sds = c()
+
 for(i in 1:sim_n) {
     sample = sample(y, length(y), replace=T)
     sample_sd = sd(sample)
     sds = c(sds, sample_sd)
 }
-c(quantile(sds, 0.25), quantile(sds, .975))
-# 25%        9.75% 
-# 0.1566095 0.2124301 
+
+c(quantile(sds, .025), quantile(sds, .975))
+#   2.5%     97.5% 
+# 0.1312577 0.2111301 
 
 
 ### 가설검정
@@ -63,6 +67,7 @@ for(i in 1:sim_n) {
     mean_diff = mean(virginica) - mean(setosa)
     diffs = c(diffs, mean_diff)
 }
+
 c(quantile(diffs, .25), quantile(diffs, .95))
 #   25%   95% 
 # 1.224 1.460

@@ -1,5 +1,6 @@
-## 경우의수
-## factorial
+### 경우의수
+
+## factorial: n! = n개의 숫자를 줄세우는 경우의 수이다.
 fact = function(n) {
     x = 1
     for(i in 2:n) {
@@ -11,13 +12,15 @@ fact = function(n) {
 fact(5) # 120
 
 
-## 순열(permutation):  nPr = n! / (n-r)!
-# brute force 로, 5P2 = 5!/(5-2)! 을 구한다.
+
+## 순열(permutation)
+# nPr = n! / (n-r)!
+# brute force 로, 5P2 를 구한다.
 x = c(1, 2, 3, 4, 5)
 cnt = 0
 
 for(i in 1:5) {
-    y = x[x != i]
+    y = x[x != i] # 원소값이 i 와 다른 것만을 골라낸다. index가 아니다.
     for(j in 1:4) {
         print(c(i, y[j])) # for{} 에선, print 를 써야 값이 출력된다.
         cnt = cnt + 1
@@ -34,8 +37,9 @@ perm = function(n, r) {
 perm(5, 2) # 20
 
 
+
 ## 조합(combination): 순열과 달리 순서를 따지지 않는다.
-# nCr = nPr/r! 
+# nCr = nPr / r! 
 # 5C2
 x = c(1, 2, 3, 4, 5)
 cnt = 0
@@ -49,6 +53,7 @@ for(i in 1:4) {
 
 cnt # 10
 
+# 
 # nCr = nPr / r!
 comb = function(n, r) {
     return(perm(n, r) / fact(r))

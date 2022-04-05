@@ -1,9 +1,13 @@
 ## 조건부확률(conditional probability)
+# 베이즈 정리(bayes' theorem): 
+#     조건부확률 = 조건과 사건 모두 일어날 확률 / 조건만 일어날 확률
+
 # 조건부확률 >= 주변확률
 # 주변확률: 총시행횟수가 분모가 되는 확률이다.
-# 베이즈 정리(bayes' theorem): P(B|A) = P(A|B) * P(B) / P(A)
 
-# 주사위를 던져, 홀수 중에 5가 나올 확률을 구한다.: 조건부확률
+
+## 주사위를 던져, 홀수 중에 5가 나올 확률을 구한다.
+# 조건부확률 = P(5|홀수) = P(5, 홀수) / P(홀수) = (1/6) / (1/2) = 1/3
 sim_n = 10000
 odd_n = 0
 five_n = 0
@@ -55,7 +59,7 @@ for(i in 1:sim_n) {
         diagnosis = rbinom(1, 1, 1 - specificity) 
         if(diagnosis == 1) {  
             positive_n = positive_n + 1
-            falsePositive_n = falsePositive_n + 1 # 1종오류
+            falsePositive_n = falsePositive_n + 1
         }
     }
 }

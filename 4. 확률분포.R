@@ -1,6 +1,6 @@
-## 이산확률분포
-# 로또 경우의 수
-lotto = function(x) choose(6, x) * choose(39, 6 - x)
+## 이산확률분포: 확률변수가 특정값을 가질 확률이다.
+# 로또 경우의 수   
+lotto = function(x) choose(6, x) * choose(39, 6 - x) #api, choose(n, r) = nCr
 for(x in 0:6) print(lotto(x))
 # [1] 3,262,623      번호 0개 맞춘 경우의 수
 # [1] 3,454,542      번호 1개 맞춘 경우의 수
@@ -25,10 +25,10 @@ for(x in 0:6) print(lotto2(x))
 
 
 
-### 연속확률분포
+### 연속확률분포: 확률변수가 특정 구간에 있을 확률이다.
 ## 정규분포(normal distribution)
 
-# 소득이 25000달러에서 35000달러까지 있을 확률을 구한다.
+# 누군가의 소득이 25000달러 이상 35000달러 이하일 확률을 구한다.
 # api, pnorm(값, 평균, 표준편차): 음의 무한대에서 값까지의 확률을 리턴한다. probability + normal
 pnorm(35000, 30000, 10000) - pnorm(25000, 30000, 10000) # 0.38
 
@@ -45,14 +45,14 @@ curve(dnorm(x), -3, 3, xlab='X', ylab='density')
 
 
 
-## 중심극한정리(centeral limit theorem): 표본평균의 분표는 정규분포이다.
+## 중심극한정리(centeral limit theorem): 표본평균의 분포는 정규분포이다.
 # 이항분포
 sim_n = 10000
 y = rbinom(sim_n, 100, 0.5)
 hist(y, xlab='X', ylab='mass', main='binom(100, 0.5)', prob=T, breaks=30)
 curve(dnorm(x, 50, 5), 25, 75, add=T, lty=2, lwd=1, col='red')
 
-# 키
+# 키의 분포는 중심극한정리에 해당한다.
 sim_n = 1000
 n = 30 # 한번 추출 시 30명을 선발
 means = vector(length=sim_n)
@@ -70,4 +70,4 @@ for(i in 1:sim_n) {
     means[i] = mean(y)
 }
 
-hist(means, xlab='평균키', ylab='비율', main='평균분포', prob=T)
+hist(means, xlab='표본평균 키', ylab='비율', main='키 분포', prob=T)
